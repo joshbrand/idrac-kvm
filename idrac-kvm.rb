@@ -5,17 +5,23 @@
 # Get the required gems with:
 # sudo gem install rest-client net-ssh-gateway slop
 
-require 'rubygems'
-require 'rest_client'
-require 'net/ssh/gateway'
-require 'slop'
-
 def cyantext(string)
   puts "\033[0;36m -- " + string + "\033[0m"
 end
 
 def redtext(string)
   puts "\033[0;31m !! " + string + "\033[0m"
+end
+
+begin
+  require 'rubygems'
+  require 'rest_client'
+  require 'net/ssh/gateway'
+  require 'slop'
+rescue LoadError => error
+  redtext "Error loading required gems: #{error.to_s}"
+  redtext "Be sure that you have all of the required rubygems installed; see README.md"
+  exit 1
 end
 
 begin
