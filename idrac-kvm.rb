@@ -99,7 +99,7 @@ begin
   jnlpfile.close
 
   cyantext "Starting Java viewer with tempfile #{jnlpfile.path}"
-  system("javaws", "-wait", jnlpfile.path)
+  system("javaws", "-headless", jnlpfile.path)
 
 rescue Errno::ECONNREFUSED => error
   redtext "Error when attempting to open SSH tunnel: #{error.to_s}"
