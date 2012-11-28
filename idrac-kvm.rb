@@ -33,9 +33,9 @@ begin
     end
     on :b, :bounce, "Bounce server (optional)", :argument => :optional
     on :l, :login, "Your username on bounce server (optional; defaults to #{ENV['USER']})", :default => ENV['USER'], :argument => :optional
-    on :s, :server, "Remote server IP (required)", :argument => :required
+    on :s, :server, "Remote server IP (required)", :required => true
     on :u, :user, "Remote username (optional; defaults to root)", :default => "root", :argument => :optional
-    on :p, :password, "Remote password (required)", :argument => :required
+    on :p, :password, "Remote password (required)", :required => true
   end
 
   bounceServer, bouncePort = opts[:bounce].split(':') if opts[:bounce]
