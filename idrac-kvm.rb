@@ -31,14 +31,14 @@ begin
       puts help
       exit
     end
-    on :b, :bounce, "Bounce server (optional)", :required => false, :optional => false
-    on :l, :login, "Your username on bounce server (optional; defaults to #{ENV['USER']})", :default => ENV['USER'], :required => false, :optional => false
-    on :s, :server, "Remote server IP (required)", :required => true, :optional => false
-    on :u, :user, "Remote username (optional; defaults to root)", :default => "root", :required => false
-    on :p, :password, "Remote password (required)", :required => true, :optional => false
+    on :b, :bounce, "Bounce server (optional)", :argument => :optional
+    on :l, :login, "Your username on bounce server (optional; defaults to #{ENV['USER']})", :default => ENV['USER'], :argument => :optional
+    on :s, :server, "Remote server IP (required)", :argument => :required
+    on :u, :user, "Remote username (optional; defaults to root)", :default => "root", :argument => :optional
+    on :p, :password, "Remote password (required)", :argument => :required
   end
 
-  bounceServer, bouncePort = opts[:bounce].split(':')
+  bounceServer, bouncePort = opts[:bounce].split(':') if opts[:bounce]
   bounceUser = opts[:login]
   remoteIP = opts[:server]
   remoteUser = opts[:user]
@@ -245,7 +245,7 @@ XNextEvent(Display *display, XEvent *event)
       break;
     }
 
-    if (enabled == 1) 
+    if (enabled == 1)
       keyevent->keycode = keycode_new;
   }
 
