@@ -93,7 +93,8 @@ begin
 
   sessionfiledata = viewersession.to_s
   sessionfiledata.gsub!(/port=5900/, "port=#{serverPortVNC}")
-  sessionfiledata.gsub!(/#{serverDomain}:443/, "#{serverDomain}:#{serverPortHTTPS}")
+  sessionfiledata.gsub!(/#{serverDomain}:443/, "#{serverDomain}:#{serverPortHTTPS}") if bounceServer
+  sessionfiledata.gsub!(/localhost/, serverDomain)
 
   jnlpfile.write(sessionfiledata)
   jnlpfile.close
